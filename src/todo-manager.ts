@@ -65,6 +65,11 @@ class TodoManager implements ITodoManager {
 
   public markAllCompleted(): void {
     // Implement here
+    this.todos = this.todos.map((todo) => ({
+      ...todo,
+      status: TodoStatus.COMPLETED,
+    }));
+    console.log("Chúc mừng bạn, tất cả các công việc của bạn đã hoàn thành.");
   }
 }
 
