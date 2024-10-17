@@ -3,7 +3,7 @@ name: Run Jest Tests
 on:
   pull_request:
     branches:
-      - feature/*
+      - main
 
 jobs:
   test:
