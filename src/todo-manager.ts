@@ -43,7 +43,9 @@ class TodoManager implements ITodoManager {
 
   public filterTodos(status?: TodoStatus): Todo[] {
     // Implement here
-
+    if (status) {
+      return this.todos.filter((todo) => todo.status === status);
+    }
     return [];
   }
 
@@ -57,6 +59,11 @@ class TodoManager implements ITodoManager {
 
   public markAllCompleted(): void {
     // Implement here
+    this.todos = this.todos.map((todo) => ({
+      ...todo,
+      status: TodoStatus.COMPLETED,
+    }));
+    console.log("Chúc mừng bạn, tất cả các công việc của bạn đã hoàn thành.");
   }
 }
 
