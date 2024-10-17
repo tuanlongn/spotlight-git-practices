@@ -54,7 +54,7 @@ class TodoManager implements ITodoManager {
   }
 
   public deleteCompletedTasks(): void {
-    this.todos = this.todos.filter((todo) => todo.status !== 'completed');
+    this.todos = this.todos.filter((todo) => todo.status !== TodoStatus.COMPLETED);
 
     if (this.todos.length === 0) {
       console.log("Bạn hãy tạo công việc mới.");
