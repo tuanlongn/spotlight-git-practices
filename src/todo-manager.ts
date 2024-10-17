@@ -48,7 +48,13 @@ class TodoManager implements ITodoManager {
   }
 
   public editTodo(id: number, newTask: string): void {
-    // Implement here
+    this.todos = this.todos.map((todo) => {
+      if (todo.id === id) {
+        todo.task = newTask
+      }
+
+      return todo
+    })
   }
 
   public deleteCompletedTasks(): void {
