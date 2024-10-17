@@ -22,14 +22,15 @@ function main() {
           rl.question(
             "Chọn trạng thái để lọc (all, completed, doing): ",
             (status: string) => {
+              let filteredTodos;
               if (status === "all") {
-                todoManager.filterTodos();
+                filteredTodos = todoManager.filterTodos();
               } else if (status === "completed") {
-                todoManager.filterTodos(TodoStatus.COMPLETED);
+                filteredTodos = todoManager.filterTodos(TodoStatus.COMPLETED);
               } else if (status === "doing") {
-                todoManager.filterTodos(TodoStatus.DOING);
+                filteredTodos = todoManager.filterTodos(TodoStatus.DOING);
               }
-              todoManager.displayTodos();
+              todoManager.displayTodos(filteredTodos);
               rl.close();
             }
           );
