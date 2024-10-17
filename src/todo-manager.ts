@@ -1,4 +1,4 @@
-import { Todo, TodoStatus } from "./todo";
+import { Todo, TodoEntity, TodoStatus } from "./todo";
 
 interface ITodoManager {
   displayTodos(): void;
@@ -7,7 +7,7 @@ interface ITodoManager {
   // Yêu cầu:
   // - Thêm tính năng lọc công việc (Todo) theo trạng thái status: completed, doing.
   // - Sau đó thêm dòng hiển thị dưới cùng: "Tổng số công việc: <trạng thái status dùng để filter> 4/5"
-  filterTodos(status?: TodoStatus): Todo[];
+  filterTodos(status?: TodoStatus): TodoEntity[];
 
   // Nhóm 2: Tính năng chỉnh sửa công việc
   // Yêu cầu:
@@ -29,7 +29,7 @@ interface ITodoManager {
 }
 
 class TodoManager implements ITodoManager {
-  private todos: Todo[] = [];
+  private todos: TodoEntity[] = [];
 
   constructor(initialTodos: Todo[]) {
     this.todos = initialTodos;
@@ -41,10 +41,10 @@ class TodoManager implements ITodoManager {
     });
   }
 
-  public filterTodos(status?: TodoStatus): Todo[] {
+  public filterTodos(status?: TodoStatus): TodoEntity[] {
     // Implement here
 
-    return [];
+    return this.todos.filter((todo) => todo.status === status);
   }
 
   public editTodo(id: number, newTask: string): void {
@@ -53,6 +53,10 @@ class TodoManager implements ITodoManager {
 
   public deleteCompletedTasks(): void {
     // Implement here
+
+    this.todos = this.todos.filter(
+      (todo) => todo.status !== TodoStatus.COMPLETED
+    );
   }
 
   public markAllCompleted(): void {
