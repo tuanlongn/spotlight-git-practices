@@ -51,6 +51,7 @@ class TodoManager implements ITodoManager {
     this.todos = this.todos.map((todo) => {
       if (todo.id === id) {
         todo.task = newTask
+        todo.updatedAt = (new Date()).toISOString()
       }
 
       return todo
