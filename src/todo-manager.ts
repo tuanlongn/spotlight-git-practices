@@ -51,10 +51,16 @@ class TodoManager implements ITodoManager {
 
   public editTodo(id: number, newTask: string): void {
     // Implement here
+    const todo = this.todos.find((todo) => todo.id === id);
+    if (todo) {
+      todo.task = newTask;
+    }
   }
 
   public deleteCompletedTasks(): void {
-    this.todos = this.todos.filter((todo) => todo.status !== TodoStatus.COMPLETED);
+    this.todos = this.todos.filter(
+      (todo) => todo.status !== TodoStatus.COMPLETED
+    );
 
     if (this.todos.length === 0) {
       console.log("Bạn hãy tạo công việc mới.");
