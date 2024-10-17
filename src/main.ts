@@ -30,7 +30,7 @@ function main() {
               } else if (status === "doing") {
                 filteredTodos = todoManager.filterTodos(TodoStatus.DOING);
               }
-              todoManager.displayTodos(filteredTodos);
+              todoManager.displayTodos(filteredTodos, status);
               rl.close();
             }
           );

@@ -35,12 +35,12 @@ class TodoManager implements ITodoManager {
     this.todos = initialTodos;
   }
 
-  public displayTodos(filteredTodos?: Todo[]): void {
+  public displayTodos(filteredTodos?: Todo[], status?: string): void {
     if (filteredTodos) {
       filteredTodos.forEach((todo) => {
         console.log(`${todo.id}. ${todo.task} (${todo.status})`);
       });
-      console.log(`Tổng số công việc: ${filteredTodos.length}/${this.todos.length}`);
+      console.log(`Tổng số công việc: ${status} ${filteredTodos.length}/${this.todos.length}`);
     } else {
       this.todos.forEach((todo) => {
         console.log(`${todo.id}. ${todo.task} (${todo.status})`);
@@ -49,7 +49,6 @@ class TodoManager implements ITodoManager {
   }
 
   public filterTodos(status?: TodoStatus): Todo[] {
-    // Implement here
     if (!status) {
       return this.todos;
     }
