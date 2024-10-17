@@ -35,18 +35,24 @@ class TodoManager implements ITodoManager {
     this.todos = initialTodos;
   }
 
-  public displayTodos(): void {
-    this.todos.forEach((todo) => {
-      console.log(`${todo.id}. ${todo.task} (${todo.status})`);
-    });
+  public displayTodos(filteredTodos?: Todo[], status?: string): void {
+    if (filteredTodos) {
+      filteredTodos.forEach((todo) => {
+        console.log(`${todo.id}. ${todo.task} (${todo.status})`);
+      });
+      console.log(`Tổng số công việc: ${status} ${filteredTodos.length}/${this.todos.length}`);
+    } else {
+      this.todos.forEach((todo) => {
+        console.log(`${todo.id}. ${todo.task} (${todo.status})`);
+      });
+    }
   }
 
   public filterTodos(status?: TodoStatus): Todo[] {
-    // Implement here
-    if (status) {
-      return this.todos.filter((todo) => todo.status === status);
+    if (!status) {
+      return this.todos;
     }
-    return [];
+    return this.todos.filter(todo => todo.status === status);
   }
 
   public editTodo(id: number, newTask: string): void {
